@@ -3,2087 +3,1085 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FireTop - Premium Free Fire Diamond Topup</title>
+    <title>Hookrest | Web Development Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link rel="icon" href="https://qu.ax/BagrV.jpg" type="image/jpg">
+    <link id="icon" rel="icon" href="https://qu.ax/GbGJV.jpg" type="image/jpg">
     <style>
         :root {
-            --primary: #6C5CE7;
-            --primary-dark: #5649c0;
-            --secondary: #00B894;
-            --accent: #FD79A8;
-            --dark: #1a1a2e;
-            --darker: #16213E;
-            --light: #F5F6FA;
-            --yellow: #FDCB6E;
-            --blue: #0984E3;
-            --red: #D63031;
-            --text: #E6E6E6;
-            --text-dark: #2D3436;
-            --card-bg: rgba(255, 255, 255, 0.1);
-            --card-bg-solid: #1F1F38;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            --gradient-reverse: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --gray-light: #e2e8f0;
+            --accent: #7c3aed;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
-        
+
         body {
-            background: var(--darker);
-            color: var(--text);
-            line-height: 1.7;
-            min-height: 100vh;
-            overflow-x: hidden;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
         }
-        
-        /* Preloader */
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--dark);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-        
-        .preloader.fade-out {
-            opacity: 0;
-        }
-        
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 5px solid var(--primary);
-            border-radius: 50%;
-            border-top-color: transparent;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Particles */
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-        
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--dark);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-dark);
-        }
-        
-        /* Header */
-        header {
-            background: rgba(26, 26, 46, 0.9);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 15px 0;
-            transition: var(--transition);
-        }
-        
-        .header-scrolled {
-            padding: 10px 0;
-            background: rgba(22, 33, 62, 0.98);
-        }
-        
-        .header-content {
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 1.5rem;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 1000;
+            display: flex;
+            gap: 0.5rem;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .language-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .language-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1.5rem 0;
         }
-        
+
         .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
             display: flex;
             align-items: center;
-            font-size: 24px;
-            font-weight: 700;
-            color: white;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--dark);
             text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            position: relative;
         }
-        
-        .logo img {
-            height: 40px;
-            margin-right: 10px;
-        }
-        
-        .logo span {
+
+        .nav-links a:hover {
             color: var(--primary);
         }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
         }
-        
-        nav ul li {
-            margin-left: 20px;
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
-        
-        nav ul li a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-            padding: 8px 15px;
-            border-radius: 50px;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-        }
-        
-        nav ul li a i {
-            margin-right: 8px;
-        }
-        
-        nav ul li a:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
+
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
-            color: white;
-            font-size: 24px;
+            font-size: 1.5rem;
+            color: var(--dark);
             cursor: pointer;
         }
-        
-        /* Hero Section */
-        .hero {
-            padding: 180px 0 100px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1.2;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
-        }
-        
-        .hero-btns {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        /* Button Styles */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--gradient);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
+
+        .mobile-menu {
+            position: fixed;
             top: 0;
-            left: -100%;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: var(--gradient-reverse);
-            transition: var(--transition);
-            z-index: -1;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.6);
+
+        .menu-overlay.active {
+            opacity: 1;
+            pointer-events: all;
         }
-        
-        .btn:hover::before {
-            left: 0;
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 0 5rem;
         }
-        
-        .btn i {
-            margin-right: 8px;
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
         }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            box-shadow: none;
+
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
-        .btn-outline:hover {
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .primary-btn, .secondary-btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .primary-btn {
             background: var(--primary);
             color: white;
         }
-        
-        .btn-accent {
-            background: var(--accent);
-            background: linear-gradient(135deg, var(--accent) 0%, #e84393 100%);
-            box-shadow: 0 4px 15px rgba(253, 121, 168, 0.4);
+
+        .primary-btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
         }
-        
-        .btn-accent::before {
-            background: linear-gradient(135deg, #e84393 0%, var(--accent) 100%);
+
+        .secondary-btn {
+            border: 1px solid var(--gray-light);
+            color: var(--dark);
         }
-        
-        .btn-sm {
-            padding: 8px 20px;
-            font-size: 14px;
+
+        .secondary-btn:hover {
+            border-color: var(--gray);
+            background: rgba(0,0,0,0.02);
         }
-        
-        /* Main Content */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 20px;
+
+        .hero-image {
             position: relative;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: white;
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-        
-        .section-title p {
-            max-width: 700px;
-            margin: 0 auto;
-            opacity: 0.8;
-        }
-        
-        /* Card Styles */
-        .card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: var(--shadow);
-            margin-bottom: 30px;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-            border-color: var(--primary);
-        }
-        
-        .card-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: white;
-            display: flex;
-            align-items: center;
-        }
-        
-        .card-title i {
-            margin-right: 10px;
-            font-size: 1.8rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        /* Form Styles */
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 500;
-            color: white;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 15px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            font-size: 16px;
-            transition: var(--transition);
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.3);
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        select.form-control {
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 15px center;
-            background-size: 20px;
-        }
-        
-        /* Diamond Packages */
-        .diamond-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .diamond-card {
-            background: var(--card-bg-solid);
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            text-align: center;
-            border: 2px solid transparent;
-            position: relative;
+            border-radius: 1rem;
             overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-        
-        .diamond-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(108, 92, 231, 0.1) 0%, rgba(108, 92, 231, 0) 70%);
-            transition: var(--transition);
-        }
-        
-        .diamond-card:hover::before {
-            transform: rotate(180deg);
-        }
-        
-        .diamond-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-        }
-        
-        .diamond-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .diamond-amount {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: white;
-        }
-        
-        .diamond-price {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--secondary);
-        }
-        
-        .diamond-bonus {
-            font-size: 0.9rem;
-            color: var(--yellow);
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-        
-        /* Popular Tag */
-        .popular-tag {
-            position: absolute;
-            top: 15px;
-            right: -30px;
-            background: var(--gradient);
-            color: white;
-            padding: 5px 30px;
-            font-size: 12px;
-            font-weight: 600;
-            transform: rotate(45deg);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-        
-        /* Result Section */
-        .result-section {
-            display: none;
-            text-align: center;
-            padding: 40px;
-            background: var(--card-bg-solid);
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            margin-top: 30px;
-            animation: fadeIn 0.5s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .payment-methods {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        
-        .payment-method {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            transition: var(--transition);
-            cursor: pointer;
-            border: 1px solid transparent;
-        }
-        
-        .payment-method:hover {
-            background: rgba(108, 92, 231, 0.2);
-            border-color: var(--primary);
-        }
-        
-        .payment-method.active {
-            background: rgba(108, 92, 231, 0.3);
-            border-color: var(--primary);
-        }
-        
-        .payment-method img {
-            height: 20px;
-        }
-        
-        .qrcode-container {
-            margin: 30px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            display: inline-block;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .qrcode-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+
+        .hero-image img {
             width: 100%;
-            height: 5px;
-            background: var(--gradient);
-        }
-        
-        .qrcode-container img {
-            max-width: 250px;
             height: auto;
             display: block;
         }
-        
-        .qrcode-instruction {
-            margin-top: 15px;
-            font-size: 14px;
-            color: var(--text-dark);
+
+        /* Services Section */
+        .section {
+            padding: 5rem 0;
         }
-        
-        .order-summary {
-            text-align: left;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .order-summary h4 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            color: white;
-            display: flex;
-            align-items: center;
-        }
-        
-        .order-summary h4 i {
-            margin-right: 10px;
-            color: var(--primary);
-        }
-        
-        .order-summary-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
-        }
-        
-        .order-summary-item.total {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: none;
-        }
-        
-        .order-summary-item .label {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .order-summary-item .value {
-            font-weight: 600;
-        }
-        
-        .order-summary-item.total .value {
-            color: var(--secondary);
-            font-size: 1.2rem;
-        }
-        
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 5px 12px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-        
-        .status-pending {
-            background: rgba(253, 203, 110, 0.2);
-            color: var(--yellow);
-        }
-        
-        .status-success {
-            background: rgba(0, 184, 148, 0.2);
-            color: var(--secondary);
-        }
-        
-        /* Steps */
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .step {
+
+        .section-title {
             text-align: center;
-            padding: 30px 20px;
-            border-radius: 15px;
-            background: var(--card-bg-solid);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
+            margin-bottom: 3rem;
         }
-        
-        .step::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gradient);
+
+        .section-title h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
         }
-        
-        .step:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
         }
-        
-        .step-number {
-            width: 40px;
-            height: 40px;
-            background: var(--gradient);
-            color: white;
-            border-radius: 50%;
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid var(--gray-light);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: var(--primary-light);
+        }
+
+        .service-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.75rem;
+            background: rgba(37, 99, 235, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            margin: 0 auto 20px;
-        }
-        
-        .step-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .step h3 {
-            margin-bottom: 15px;
-            color: white;
-        }
-        
-        /* Features */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .feature {
-            background: var(--card-bg-solid);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-        }
-        
-        .feature:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-        }
-        
-        .feature-icon {
-            font-size: 2rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            flex-shrink: 0;
-        }
-        
-        .feature-content h3 {
-            margin-bottom: 10px;
-            color: white;
-        }
-        
-        .feature-content p {
-            opacity: 0.8;
-            font-size: 0.95rem;
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            margin-top: 40px;
-        }
-        
-        .testimonial-slider {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .testimonial-slide {
-            background: var(--card-bg-solid);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: var(--shadow);
-            margin: 0 15px;
-            transition: var(--transition);
-        }
-        
-        .testimonial-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .testimonial-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 15px;
-            border: 3px solid var(--primary);
-        }
-        
-        .testimonial-user h4 {
-            color: white;
-            margin-bottom: 5px;
-        }
-        
-        .testimonial-rating {
-            color: var(--yellow);
-            font-size: 14px;
-        }
-        
-        .testimonial-text {
-            font-style: italic;
-            opacity: 0.9;
-            position: relative;
-            padding-left: 20px;
-        }
-        
-        .testimonial-text::before {
-            content: '"';
-            position: absolute;
-            left: 0;
-            top: -10px;
-            font-size: 40px;
+            margin-bottom: 1.5rem;
             color: var(--primary);
-            opacity: 0.3;
-            font-family: serif;
+            font-size: 1.25rem;
         }
-        
-        /* FAQ */
-        .faq-container {
-            margin-top: 40px;
-        }
-        
-        .faq-item {
-            background: var(--card-bg-solid);
-            border-radius: 10px;
-            margin-bottom: 15px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-        }
-        
-        .faq-question {
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
+
+        .service-card h3 {
+            font-size: 1.25rem;
             font-weight: 600;
-            color: white;
-            transition: var(--transition);
+            margin-bottom: 1rem;
         }
-        
-        .faq-question:hover {
-            background: rgba(255, 255, 255, 0.05);
+
+        .service-card p {
+            color: var(--gray);
         }
-        
-        .faq-question i {
-            transition: var(--transition);
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
         }
-        
-        .faq-answer {
-            padding: 0 20px;
-            max-height: 0;
+
+        .about-text h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .about-text p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 1rem;
             overflow: hidden;
-            transition: var(--transition);
-            opacity: 0.9;
-            border-top: 1px solid transparent;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-        
-        .faq-item.active .faq-question {
-            background: rgba(108, 92, 231, 0.1);
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
-        
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
-        }
-        
-        .faq-item.active .faq-answer {
-            padding: 20px;
-            max-height: 500px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Footer */
-        footer {
+
+        /* Contact Section */
+        .contact {
             background: var(--dark);
             color: white;
-            padding: 80px 0 30px;
-            position: relative;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            margin: 5rem 0;
         }
-        
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gradient);
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+
+        .contact-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: 1fr 1fr;
         }
-        
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
+
+        .contact-info {
+            padding: 4rem;
+        }
+
+        .contact-info h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .contact-info p {
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--primary-light);
+        }
+
+        .contact-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-text a, .contact-text p {
+            opacity: 0.8;
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .contact-text a:hover {
+            opacity: 1;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 4rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--gray-light);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            background: var(--dark);
             color: white;
         }
-        
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
         .footer-column h3::after {
             content: '';
             position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
+            width: 40px;
             height: 3px;
-            background: var(--gradient);
+            background: var(--primary);
+            bottom: -8px;
+            left: 0;
         }
-        
+
         .footer-column p {
-            margin-bottom: 15px;
             opacity: 0.8;
+            margin-bottom: 1.5rem;
         }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-column ul li a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-        }
-        
-        .footer-column ul li a:hover {
-            opacity: 1;
-            color: var(--primary);
-            padding-left: 5px;
-        }
-        
-        .footer-column ul li a i {
-            margin-right: 8px;
-            width: 20px;
-            text-align: center;
-        }
-        
+
         .social-links {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 1rem;
         }
-        
-        .social-links a {
+
+        .social-link {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
             color: white;
-            transition: var(--transition);
+            text-decoration: none;
+            transition: all 0.2s ease;
         }
-        
-        .social-links a:hover {
-            background: var(--gradient);
+
+        .social-link:hover {
+            background: var(--primary);
             transform: translateY(-3px);
         }
-        
-        .payment-brands {
+
+        .footer-links {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
+            flex-direction: column;
+            gap: 0.75rem;
         }
-        
-        .payment-brands img {
-            height: 25px;
-            border-radius: 4px;
+
+        .footer-links a {
+            color: white;
+            opacity: 0.8;
+            text-decoration: none;
+            transition: all 0.2s ease;
         }
-        
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--primary-light);
+        }
+
         .copyright {
             text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
             opacity: 0.7;
             font-size: 0.9rem;
         }
-        
-        /* Back to Top */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--gradient);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            z-index: 999;
-        }
-        
-        .back-to-top.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.5);
-        }
-        
+
         /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3rem;
+        @media (max-width: 1024px) {
+            .hero-content, 
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
-            
-            .hero p {
-                font-size: 1.1rem;
+
+            .hero-text {
+                order: -1;
+                text-align: center;
             }
-            
-            .section-title h2 {
-                font-size: 2.2rem;
+
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .about-image {
+                order: -1;
             }
         }
-        
+
         @media (max-width: 768px) {
-            nav ul {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 80%;
-                height: calc(100vh - 80px);
-                background: var(--dark);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 30px;
-                transition: var(--transition);
-                z-index: 999;
+            .nav-links {
+                display: none;
             }
-            
-            nav ul.active {
-                left: 0;
-            }
-            
-            nav ul li {
-                margin-left: 0;
-            }
-            
-            nav ul li a {
-                font-size: 1.2rem;
-                padding: 10px 30px;
-            }
-            
+
             .mobile-menu-btn {
                 display: block;
             }
-            
+
             .hero {
-                padding: 150px 0 80px;
+                padding: 7rem 0 3rem;
             }
-            
-            .hero h1 {
-                font-size: 2.5rem;
+
+            .hero-text h1 {
+                font-size: 2.25rem;
             }
-            
-            .hero-btns {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-            
+
             .section-title h2 {
-                font-size: 2rem;
+                font-size: 1.75rem;
             }
-            
-            .steps {
-                grid-template-columns: 1fr;
-            }
-            
-            .features {
-                grid-template-columns: 1fr;
+
+            .contact-info,
+            .contact-form {
+                padding: 2rem;
             }
         }
-        
+
         @media (max-width: 576px) {
-            .hero {
-                padding: 130px 0 60px;
-            }
-            
-            .hero h1 {
+            .hero-text h1 {
                 font-size: 2rem;
             }
-            
-            .hero p {
-                font-size: 1rem;
+
+            .cta-buttons {
+                flex-direction: column;
             }
-            
-            .card {
-                padding: 20px;
-            }
-            
-            .card-title {
-                font-size: 1.3rem;
-            }
-            
-            .diamond-grid {
+
+            .stats {
                 grid-template-columns: 1fr;
             }
-            
-            .result-section {
-                padding: 20px;
-            }
-            
-            .qrcode-container img {
-                max-width: 200px;
-            }
-            
+
             .footer-content {
                 grid-template-columns: 1fr;
             }
         }
-        
-        /* Animations */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(-45deg, #6C5CE7, #FD79A8, #00B894, #0984E3);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
     </style>
 </head>
 <body>
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="loader"></div>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="language-btn active" id="en-btn">EN</button>
+        <button class="language-btn" id="id-btn">ID</button>
     </div>
-    
-    <!-- Particles Background -->
-    <div id="particles-js"></div>
-    
+
     <!-- Header -->
-    <header id="header">
-        <div class="header-content">
-            <a href="#" class="logo">
-                <img src="https://qu.ax/rAuCS.jpg" alt="Free Fire Logo">
-                Fire<span>Top</span>
-            </a>
-            
+    <header>
+        <div class="container">
             <nav>
-                <ul id="nav-menu">
-                    <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#order"><i class="fas fa-shopping-cart"></i> Order</a></li>
-                    <li><a href="#packages"><i class="fas fa-gem"></i> Packages</a></li>
-                    <li><a href="#features"><i class="fas fa-star"></i> Features</a></li>
-                    <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
-                </ul>
-                
-                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <a href="#" class="logo">
+                    <i class="fas fa-code logo-icon"></i>
+                    Hookrest
+                </a>
+                <div class="nav-links">
+                    <a href="#home" class="en">Home</a>
+                    <a href="#home" class="id" style="display:none">Beranda</a>
+                    <a href="#services" class="en">Services</a>
+                    <a href="#services" class="id" style="display:none">Layanan</a>
+                    <a href="#about" class="en">About</a>
+                    <a href="#about" class="id" style="display:none">Tentang</a>
+                    <a href="#contact" class="en">Contact</a>
+                    <a href="#contact" class="id" style="display:none">Kontak</a>
+                </div>
+                <button class="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
                 </button>
             </nav>
         </div>
     </header>
-    
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <i class="fas fa-code logo-icon"></i>
+                Hookrest
+            </div>
+            <button class="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="#home" class="en">Home</a>
+            <a href="#home" class="id" style="display:none">Beranda</a>
+            <a href="#services" class="en">Services</a>
+            <a href="#services" class="id" style="display:none">Layanan</a>
+            <a href="#about" class="en">About</a>
+            <a href="#about" class="id" style="display:none">Tentang</a>
+            <a href="#contact" class="en">Contact</a>
+            <a href="#contact" class="id" style="display:none">Kontak</a>
+        </div>
+    </div>
+    <div class="menu-overlay"></div>
+
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-content">
-            <h1 class="animate__animated animate__fadeInDown">Premium Free Fire Diamond Topup</h1>
-            <p class="animate__animated animate__fadeInDown animate__delay-1s">Get your diamonds instantly with our fast and secure service. Best prices guaranteed!</p>
-            
-            <div class="hero-btns animate__animated animate__fadeInUp animate__delay-2s">
-                <a href="#order" class="btn">
-                    <i class="fas fa-bolt"></i> Order Now
-                </a>
-                <a href="#packages" class="btn btn-outline">
-                    <i class="fas fa-gem"></i> View Packages
-                </a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Order Section -->
-    <section class="container" id="order">
-        <div class="section-title">
-            <h2>Order Diamonds</h2>
-            <p>Fill in your details to get your diamonds instantly</p>
-        </div>
-        
-        <div class="card">
-            <form id="topupForm">
-                <div class="form-group">
-                    <label for="userID"><i class="fas fa-user"></i> Free Fire Player ID</label>
-                    <input type="text" id="userID" class="form-control" placeholder="Enter your Free Fire ID" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="diamondAmount"><i class="fas fa-gem"></i> Select Diamond Package</label>
-                    <select id="diamondAmount" class="form-control" required>
-                        <option value="">-- Select Package --</option>
-                        <option value="5">5 Diamonds (Rp 826)</option>
-                        <option value="10">10 Diamonds (Rp 1,000)</option>
-                        <option value="12">12 Diamonds (Rp 1,500)</option>
-                        <option value="50">50 Diamonds (Rp 6,000)</option>
-                        <option value="70">70 Diamonds (Rp 9,000)</option>
-                        <option value="100">100 Diamonds (Rp 13,000)</option>
-                        <option value="140">140 Diamonds (Rp 18,000)</option>
-                        <option value="210">210 Diamonds (Rp 27,000)</option>
-                        <option value="355">355 Diamonds (Rp 45,000)</option>
-                        <option value="510">510 Diamonds (Rp 65,000)</option>
-                        <option value="720">720 Diamonds (Rp 90,000)</option>
-                        <option value="1450">1450 Diamonds (Rp 182,000)</option>
-                        <option value="booyah pass">Booyah Pass (Rp 46,000)</option>
-                    </select>
-                </div>
-                
-                <button type="submit" class="btn btn-accent">
-                    <i class="fas fa-paper-plane"></i> Create Order
-                </button>
-            </form>
-            
-            <div id="resultSection" class="result-section">
-                <h3>Complete Your Payment</h3>
-                <p>Choose your payment method and complete the transaction</p>
-                
-                <div class="payment-methods">
-                    <div class="payment-method active" data-method="qris">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/QRIS_logo.svg/1200px-QRIS_logo.svg.png" alt="QRIS">
-                        <span>QRIS</span>
-                    </div>
-                    <div class="payment-method" data-method="dana">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_DANA.svg" alt="DANA">
-                        <span>DANA</span>
-                    </div>
-                    <div class="payment-method" data-method="ovo">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Logo_ovo.png" alt="OVO">
-                        <span>OVO</span>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="en">Modern Web Solutions for Your Business</h1>
+                    <h1 class="id" style="display:none">Solusi Web Modern untuk Bisnis Anda</h1>
+                    <p class="en">We create beautiful, functional websites that help your business stand out and grow in the digital world.</p>
+                    <p class="id" style="display:none">Kami membuat website indah dan fungsional yang membantu bisnis Anda menonjol dan berkembang di dunia digital.</p>
+                    <div class="cta-buttons">
+                        <a href="#contact" class="primary-btn en">
+                            Get Started
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="primary-btn id" style="display:none">
+                            Mulai Sekarang
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#services" class="secondary-btn en">
+                            Our Services
+                        </a>
+                        <a href="#services" class="secondary-btn id" style="display:none">
+                            Layanan Kami
+                        </a>
                     </div>
                 </div>
-                
-                <div class="qrcode-container floating">
-                    <img id="qrcodeImage" src="" alt="Payment QR Code">
-                    <div class="qrcode-instruction">Scan this QR code with your mobile banking/DANA/OVO app</div>
-                </div>
-                
-                <div class="order-summary">
-                    <h4><i class="fas fa-receipt"></i> Order Details</h4>
-                    <div class="order-summary-item">
-                        <span class="label">Player ID:</span>
-                        <span class="value" id="resultID"></span>
-                    </div>
-                    <div class="order-summary-item">
-                        <span class="label">Package:</span>
-                        <span class="value" id="resultPackage"></span>
-                    </div>
-                    <div class="order-summary-item">
-                        <span class="label">Product Code:</span>
-                        <span class="value" id="resultProductCode"></span>
-                    </div>
-                    <div class="order-summary-item">
-                        <span class="label">Order ID:</span>
-                        <span class="value" id="resultOrderID"></span>
-                    </div>
-                    <div class="order-summary-item">
-                        <span class="label">Status:</span>
-                        <span class="value">
-                            <span class="status-badge status-pending">
-                                <i class="fas fa-clock"></i> Pending Payment
-                            </span>
-                        </span>
-                    </div>
-                    <div class="order-summary-item">
-                        <span class="label">Diamond Price:</span>
-                        <span class="value" id="resultPrice"></span>
-                    </div>
-                    <div class="order-summary-item">
-                        <span class="label">Admin Fee:</span>
-                        <span class="value">Rp 1,000</span>
-                    </div>
-                    <div class="order-summary-item total">
-                        <span class="label">Total Payment:</span>
-                        <span class="value" id="resultTotal"></span>
-                    </div>
-                </div>
-                
-                <p style="margin-top: 20px;">
-                    <i class="fas fa-info-circle"></i> Diamonds will be delivered within 1-5 minutes after payment
-                </p>
-                
-                <a href="https://wa.me/62895323195263" class="btn pulse" style="margin-top: 20px;">
-                    <i class="fab fa-whatsapp"></i> Need Help? Contact Us
-                </a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Diamond Packages -->
-    <section class="container" id="packages">
-        <div class="section-title">
-            <h2>Diamond Packages</h2>
-            <p>Choose from our variety of diamond packages</p>
-        </div>
-        
-        <div class="diamond-grid">
-            <div class="diamond-card">
-                <div class="diamond-icon">
-                    <i class="fas fa-gem"></i>
-                </div>
-                <div class="diamond-amount">5 Diamonds</div>
-                <div class="diamond-price">Rp 826</div>
-                <button class="btn btn-sm" onclick="setPackage('5')">Select</button>
-            </div>
-            
-            <div class="diamond-card">
-                <div class="diamond-icon">
-                    <i class="fas fa-gem"></i>
-                </div>
-                <div class="diamond-amount">10 Diamonds</div>
-                <div class="diamond-price">Rp 1,000</div>
-                <button class="btn btn-sm" onclick="setPackage('10')">Select</button>
-            </div>
-            
-            <div class="diamond-card">
-                <div class="diamond-icon">
-                    <i class="fas fa-gem"></i>
-                </div>
-                <div class="diamond-amount">12 Diamonds</div>
-                <div class="diamond-price">Rp 1,500</div>
-                <button class="btn btn-sm" onclick="setPackage('12')">Select</button>
-            </div>
-            
-            <div class="diamond-card">
-                <div class="diamond-icon">
-                    <i class="fas fa-gem"></i>
-                </div>
-                <div class="diamond-amount">50 Diamonds</div>
-                <div class="diamond-price">Rp 6,000</div>
-                <button class="btn btn-sm" onclick="setPackage('50')">Select</button>
-            </div>
-            
-            <div class="diamond-card">
-                <div class="diamond-icon">
-                    <i class="fas fa-gem"></i>
-                </div>
-                <div class="diamond-amount">70 Diamonds</div>
-                <div class="diamond-price">Rp 9,000</div>
-                <div class="diamond-bonus">+ 5 Bonus Diamonds</div>
-                <button class="btn btn-sm" onclick="setPackage('70')">Select</button>
-            </div>
-            
-            <div class="diamond-card">
-                <div class="diamond-icon">
-                    <i class="fas fa-gem"></i>
-                </div>
-                <div class="diamond-amount">100 Diamonds</div>
-                <div class="diamond-price">Rp 13,000</div>
-                <div class="diamond-bonus">+ 10 Bonus Diamonds</div>
-                <button class="btn btn-sm" onclick="setPackage('100')">Select</button>
-            </div>
-            
-            <div class="diamond-card">
-                <div class="diamond-icon">
-                    <i class="fas fa-gem"></i>
-                </div>
-                <div class="diamond-amount">140 Diamonds</div>
-                <div class="diamond-price">Rp 18,000</div>
-                <div class="diamond-bonus">+ 15 Bonus Diamonds</div>
-                <button class="btn btn-sm" onclick="setPackage('140')">Select</button>
-            </div>
-            
-            <div class="diamond-card">
-                <div class="diamond-icon">
-                    <i class="fas fa-gem"></i>
-                </div>
-                <div class="diamond-amount">210 Diamonds</div>
-                <div class="diamond-price">Rp 27,000</div>
-                <div class="diamond-bonus">+ 25 Bonus Diamonds</div>
-                <button class="btn btn-sm" onclick="setPackage('210')">Select</button>
-            </div>
-            
-            <div class="diamond-card">
-                <div class="diamond-icon">
-                    <i class="fas fa-gem"></i>
-                </div>
-                <div class="diamond-amount">355 Diamonds</div>
-                <div class="diamond-price">Rp 45,000</div>
-                <div class="diamond-bonus">+ 40 Bonus Diamonds</div>
-                <button class="btn btn-sm" onclick="setPackage('355')">Select</button>
-            </div>
-            
-            <div class="diamond-card">
-                <div class="diamond-icon">
-                    <i class="fas fa-gem"></i>
-                </div>
-                <div class="diamond-amount">510 Diamonds</div>
-                <div class="diamond-price">Rp 65,000</div>
-                <div class="diamond-bonus">+ 60 Bonus Diamonds</div>
-                <button class="btn btn-sm" onclick="setPackage('510')">Select</button>
-            </div>
-            
-            <div class="diamond-card">
-                <div class="diamond-icon">
-                    <i class="fas fa-gem"></i>
-                </div>
-                <div class="diamond-amount">720 Diamonds</div>
-                <div class="diamond-price">Rp 90,000</div>
-                <div class="diamond-bonus">+ 80 Bonus Diamonds</div>
-                <button class="btn btn-sm" onclick="setPackage('720')">Select</button>
-            </div>
-            
-            <div class="diamond-card">
-                <div class="popular-tag">POPULAR</div>
-                <div class="diamond-icon">
-                    <i class="fas fa-ticket-alt"></i>
-                </div>
-                <div class="diamond-amount">Booyah Pass</div>
-                <div class="diamond-price">Rp 46,000</div>
-                <div class="diamond-bonus">+ Exclusive Rewards</div>
-                <button class="btn btn-sm" onclick="setPackage('booyah pass')">Select</button>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Features Section -->
-    <section class="container" id="features">
-        <div class="section-title">
-            <h2>Why Choose Us?</h2>
-            <p>We provide the best service for Free Fire players</p>
-        </div>
-        
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <div class="feature-content">
-                    <h3>Instant Delivery</h3>
-                    <p>Get your diamonds within 1-5 minutes after payment confirmation. No waiting time!</p>
-                </div>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <div class="feature-content">
-                    <h3>100% Safe</h3>
-                    <p>Secure payment methods and guaranteed account safety. We never ask for your password.</p>
-                </div>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">
-                    <i class="fas fa-percentage"></i>
-                </div>
-                <div class="feature-content">
-                    <h3>Best Prices</h3>
-                    <p>We offer the most competitive prices in the market with special bonuses for large packages.</p>
-                </div>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">
-                    <i class="fas fa-headset"></i>
-                </div>
-                <div class="feature-content">
-                    <h3>24/7 Support</h3>
-                    <p>Our customer service team is available anytime to help you with your orders.</p>
-                </div>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">
-                    <i class="fas fa-gift"></i>
-                </div>
-                <div class="feature-content">
-                    <h3>Bonus Diamonds</h3>
-                    <p>Get extra bonus diamonds when you purchase larger packages. More value for your money!</p>
-                </div>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">
-                    <i class="fas fa-money-bill-wave"></i>
-                </div>
-                <div class="feature-content">
-                    <h3>Multiple Payments</h3>
-                    <p>Various payment methods available including QRIS, DANA, OVO, and bank transfer.</p>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Web Development">
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- How It Works -->
-    <section class="container" id="how-it-works">
-        <div class="section-title">
-            <h2>How It Works</h2>
-            <p>Get your diamonds in just 4 easy steps</p>
-        </div>
-        
-        <div class="steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <div class="step-icon">
-                    <i class="fas fa-user"></i>
-                </div>
-                <h3>Enter Player ID</h3>
-                <p>Input your Free Fire Player ID correctly</p>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="en">Our Services</h2>
+                <h2 class="id" style="display:none">Layanan Kami</h2>
+                <p class="en">We offer professional web development services tailored to your needs</p>
+                <p class="id" style="display:none">Kami menawarkan layanan pengembangan web profesional yang disesuaikan dengan kebutuhan Anda</p>
             </div>
-            
-            <div class="step">
-                <div class="step-number">2</div>
-                <div class="step-icon">
-                    <i class="fas fa-shopping-cart"></i>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="en">Company Profile</h3>
+                    <h3 class="id" style="display:none">Profil Perusahaan</h3>
+                    <p class="en">Professional websites that showcase your business and build credibility.</p>
+                    <p class="id" style="display:none">Website profesional yang menampilkan bisnis Anda dan membangun kredibilitas.</p>
                 </div>
-                <h3>Select Package</h3>
-                <p>Choose your desired diamond package</p>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">3</div>
-                <div class="step-icon">
-                    <i class="fas fa-qrcode"></i>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="en">Landing Pages</h3>
+                    <h3 class="id" style="display:none">Halaman Landing</h3>
+                    <p class="en">High-converting single page websites designed to generate leads and sales.</p>
+                    <p class="id" style="display:none">Website satu halaman yang dirancang untuk menghasilkan prospek dan penjualan.</p>
                 </div>
-                <h3>Make Payment</h3>
-                <p>Scan the QR code to complete payment</p>
-            </div>
-            
-            <div class="step">
-                <div class="step-number">4</div>
-                <div class="step-icon">
-                    <i class="fas fa-gem"></i>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-blog"></i>
+                    </div>
+                    <h3 class="en">Blog Websites</h3>
+                    <h3 class="id" style="display:none">Website Blog</h3>
+                    <p class="en">Content-focused platforms to engage your audience and establish authority.</p>
+                    <p class="id" style="display:none">Platform berfokus konten untuk melibatkan audiens dan membangun otoritas.</p>
                 </div>
-                <h3>Receive Diamonds</h3>
-                <p>Get diamonds instantly in your account</p>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="en">Portfolio Sites</h3>
+                    <h3 class="id" style="display:none">Situs Portofolio</h3>
+                    <p class="en">Beautiful showcases for creative professionals to display their best work.</p>
+                    <p class="id" style="display:none">Tampilan indah untuk profesional kreatif menampilkan karya terbaik mereka.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3 class="en">E-commerce</h3>
+                    <h3 class="id" style="display:none">Toko Online</h3>
+                    <p class="en">Online stores with secure payment systems and product management.</p>
+                    <p class="id" style="display:none">Toko online dengan sistem pembayaran aman dan manajemen produk.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="en">Responsive Design</h3>
+                    <h3 class="id" style="display:none">Desain Responsif</h3>
+                    <p class="en">Websites that look and function perfectly on all devices.</p>
+                    <p class="id" style="display:none">Website yang tampil dan berfungsi sempurna di semua perangkat.</p>
+                </div>
             </div>
         </div>
     </section>
-    
-    <!-- Testimonials -->
-    <section class="container" id="testimonials">
-        <div class="section-title">
-            <h2>What Players Say</h2>
-            <p>Trusted by thousands of Free Fire players</p>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="en">Why Choose Hookrest?</h2>
+                    <h2 class="id" style="display:none">Mengapa Memilih Hookrest?</h2>
+                    <p class="en">We combine cutting-edge technology with user-focused design to create websites that not only look amazing but also deliver real results for your business.</p>
+                    <p class="id" style="display:none">Kami menggabungkan teknologi mutakhir dengan desain berfokus pengguna untuk membuat website yang tidak hanya terlihat menakjubkan tetapi juga memberikan hasil nyata untuk bisnis Anda.</p>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label en">Projects Completed</div>
+                            <div class="stat-label id" style="display:none">Projek Selesai</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label en">Client Satisfaction</div>
+                            <div class="stat-label id" style="display:none">Kepuasan Klien</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Web Development Team">
+                </div>
+            </div>
         </div>
-        
-        <div class="testimonials">
-            <div class="testimonial-slider">
-                <div class="testimonial-slide">
-                    <div class="testimonial-header">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="testimonial-avatar">
-                        <div class="testimonial-user">
-                            <h4>Rizky Pratama</h4>
-                            <div class="testimonial-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+    </section>
+
+    <!-- Contact Section -->
+    <div class="contact" id="contact">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2 class="en">Let's Build Something Amazing</h2>
+                    <h2 class="id" style="display:none">Mari Membuat Sesuatu yang Menakjubkan</h2>
+                    <p class="en">Ready to take your online presence to the next level? Get in touch with us today to discuss your project.</p>
+                    <p class="id" style="display:none">Siap membawa kehadiran online Anda ke level berikutnya? Hubungi kami hari ini untuk mendiskusikan proyek Anda.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 class="en">Phone</h4>
+                                <h4 class="id" style="display:none">Telepon</h4>
+                                <a href="tel:+62895323195263">+62 895-3231-95263</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <a href="mailto:devhookrest@gmail.com">devhookrest@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 class="en">Location</h4>
+                                <h4 class="id" style="display:none">Lokasi</h4>
+                                <p>Indonesia</p>
                             </div>
                         </div>
                     </div>
-                    <div class="testimonial-text">
-                        Very fast delivery! I got my diamonds in less than 2 minutes after payment. Will definitely order again.
-                    </div>
                 </div>
-                
-                <div class="testimonial-slide">
-                    <div class="testimonial-header">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" class="testimonial-avatar">
-                        <div class="testimonial-user">
-                            <h4>Sarah Wijaya</h4>
-                            <div class="testimonial-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name" class="en">Your Name</label>
+                            <label for="name" class="id" style="display:none">Nama Anda</label>
+                            <input type="text" id="name" class="en" placeholder="Enter your name" required>
+                            <input type="text" id="name" class="id" placeholder="Masukkan nama Anda" required style="display:none">
                         </div>
-                    </div>
-                    <div class="testimonial-text">
-                        The prices here are much cheaper than other places. Got bonus diamonds too! Customer service is very responsive.
-                    </div>
-                </div>
-                
-                <div class="testimonial-slide">
-                    <div class="testimonial-header">
-                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="User" class="testimonial-avatar">
-                        <div class="testimonial-user">
-                            <h4>Andika Surya</h4>
-                            <div class="testimonial-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="en" placeholder="Enter your email" required>
+                            <input type="email" id="email" class="id" placeholder="Masukkan email Anda" required style="display:none">
                         </div>
-                    </div>
-                    <div class="testimonial-text">
-                        I was skeptical at first but decided to try with small amount. It worked perfectly! Now I always buy diamonds here.
-                    </div>
+                        <div class="form-group">
+                            <label for="subject" class="en">Subject</label>
+                            <label for="subject" class="id" style="display:none">Subjek</label>
+                            <input type="text" id="subject" class="en" placeholder="What's this about?">
+                            <input type="text" id="subject" class="id" placeholder="Tentang apa ini?" style="display:none">
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="en">Your Message</label>
+                            <label for="message" class="id" style="display:none">Pesan Anda</label>
+                            <textarea id="message" class="en" placeholder="Tell us about your project" required></textarea>
+                            <textarea id="message" class="id" placeholder="Ceritakan tentang proyek Anda" required style="display:none"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn en">Send Message</button>
+                        <button type="submit" class="submit-btn id" style="display:none">Kirim Pesan</button>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
-    
-    <!-- FAQ Section -->
-    <section class="container" id="faq">
-        <div class="section-title">
-            <h2>Frequently Asked Questions</h2>
-            <p>Find answers to common questions about our service</p>
-        </div>
-        
-        <div class="faq-container">
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>How long does it take to receive diamonds after payment?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    Diamonds are usually delivered within 1-5 minutes after payment confirmation. In rare cases during peak hours, it may take up to 15 minutes. If you haven't received your diamonds after 30 minutes, please contact our customer service.
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Is it safe to top up diamonds through your service?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    Absolutely! We only require your Free Fire Player ID to process the order. We never ask for your password or other account credentials. All transactions are secured with encryption and we use official payment channels.
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>What payment methods do you accept?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    We currently accept QRIS, DANA, OVO, and bank transfers (coming soon). All payments are processed securely through our payment partners.
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Can I get a refund if I made a wrong order?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    Refunds are only possible if the diamonds haven't been delivered to your account yet. Please contact our customer service immediately if you made a wrong order. Once diamonds are delivered, we cannot process refunds.
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Do you offer discounts for bulk purchases?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    Yes! Our larger packages already include bonus diamonds which effectively gives you more value for your money. We also occasionally run special promotions with additional discounts - follow our social media to stay updated.
-                </div>
-            </div>
-        </div>
-    </section>
-    
+    </div>
+
     <!-- Footer -->
-    <footer id="contact">
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>FireTop</h3>
-                <p>The fastest and most reliable Free Fire diamond topup service with instant delivery.</p>
-                <div class="social-links">
-                    <a href="https://wa.me/62895323195263"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-telegram"></i></a>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Hookrest Team</h3>
+                    <p class="en">We create beautiful, functional websites that help businesses grow and succeed in the digital world.</p>
+                    <p class="id" style="display:none">Kami membuat website indah dan fungsional yang membantu bisnis tumbuh dan sukses di dunia digital.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="en">Quick Links</h3>
+                    <h3 class="id" style="display:none">Tautan Cepat</h3>
+                    <div class="footer-links">
+                        <a href="#home" class="en">Home</a>
+                        <a href="#home" class="id" style="display:none">Beranda</a>
+                        <a href="#services" class="en">Services</a>
+                        <a href="#services" class="id" style="display:none">Layanan</a>
+                        <a href="#about" class="en">About</a>
+                        <a href="#about" class="id" style="display:none">Tentang</a>
+                        <a href="#contact" class="en">Contact</a>
+                        <a href="#contact" class="id" style="display:none">Kontak</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3 class="en">Services</h3>
+                    <h3 class="id" style="display:none">Layanan</h3>
+                    <div class="footer-links">
+                        <a href="#" class="en">Web Design</a>
+                        <a href="#" class="id" style="display:none">Desain Web</a>
+                        <a href="#" class="en">Web Development</a>
+                        <a href="#" class="id" style="display:none">Pengembangan Web</a>
+                        <a href="#" class="en">SEO Optimization</a>
+                        <a href="#" class="id" style="display:none">Optimasi SEO</a>
+                        <a href="#" class="en">UI/UX Design</a>
+                        <a href="#" class="id" style="display:none">Desain UI/UX</a>
+                    </div>
                 </div>
             </div>
-            
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#order"><i class="fas fa-shopping-cart"></i> Order Diamonds</a></li>
-                    <li><a href="#packages"><i class="fas fa-gem"></i> Diamond Packages</a></li>
-                    <li><a href="#how-it-works"><i class="fas fa-question-circle"></i> How It Works</a></li>
-                    <li><a href="#faq"><i class="fas fa-info-circle"></i> FAQ</a></li>
-                </ul>
+            <div class="copyright">
+                <p>&copy; 2025 Hookrest Team. <span class="en"></span><span class="id" style="display:none"></span></p>
             </div>
-            
-            <div class="footer-column">
-                <h3>Payment Methods</h3>
-                <div class="payment-brands">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/QRIS_logo.svg/1200px-QRIS_logo.svg.png" alt="QRIS">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_DANA.svg" alt="DANA">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Logo_ovo.png" alt="OVO">
-                </div>
-                <p style="margin-top: 15px;">More payment methods coming soon!</p>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Contact Us</h3>
-                <ul>
-                    <li><a href="mailto:devhookrest@gmail.com"><i class="fas fa-envelope"></i> devhookrest@gmail.com</a></li>
-                    <li><a href="https://wa.me/62895323195263"><i class="fab fa-whatsapp"></i> +62 895-3231-95263</a></li>
-                    <li><a href="#"><i class="fas fa-user"></i> Creator: Danz</a></li>
-                    <li><a href="#"><i class="fas fa-clock"></i> 24/7 Customer Support</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="copyright">
-            <p>&copy; 2025 FireTop. All rights reserved.</p>
         </div>
     </footer>
-    
-    <!-- Back to Top Button -->
-    <div class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </div>
-    
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
     <script>
-        // Preloader
-        window.addEventListener('load', function() {
-            const preloader = document.querySelector('.preloader');
-            setTimeout(() => {
-                preloader.classList.add('fade-out');
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 500);
-            }, 1000);
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const menuOverlay = document.querySelector('.menu-overlay');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.add('active');
         });
-        
-        // Mobile Menu
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const navMenu = document.getElementById('nav-menu');
-        
-        mobileMenuBtn.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            this.innerHTML = navMenu.classList.contains('active') ? 
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
         });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('#nav-menu a').forEach(link => {
-            link.addEventListener('click', function() {
-                navMenu.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
+
+        menuOverlay.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
         });
-        
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
-            }
-            
-            // Back to top button
-            const backToTop = document.getElementById('backToTop');
-            if (window.scrollY > 300) {
-                backToTop.classList.add('active');
-            } else {
-                backToTop.classList.remove('active');
-            }
-        });
-        
-        // Back to top button
-        document.getElementById('backToTop').addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Smooth scrolling for anchor links
+
+        // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu if open
+                mobileMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
             });
         });
-        
-        // Diamond mapping and prices
-        const diamondMapping = {
-            "5": "FF5-S24",
-            "10": "FF_10--16",
-            "12": "FF12-S113",
-            "50": "FF_50--2",
-            "70": "FF_70--16",
-            "100": "FF_100--2",
-            "140": "FF_140--73",
-            "210": "FF_210--16",
-            "355": "FF_355--73",
-            "510": "FF_510--73",
-            "720": "FF_720--73",
-            "1450": "FF_1450--73",
-            "booyah pass": "FF_BP--73"
+
+        // Language Toggle
+        const enBtn = document.getElementById('en-btn');
+        const idBtn = document.getElementById('id-btn');
+        const enElements = document.querySelectorAll('.en');
+        const idElements = document.querySelectorAll('.id');
+
+        enBtn.addEventListener('click', () => {
+            enBtn.classList.add('active');
+            idBtn.classList.remove('active');
+            
+            enElements.forEach(el => el.style.display = 'block');
+            idElements.forEach(el => el.style.display = 'none');
+        });
+
+        idBtn.addEventListener('click', () => {
+            idBtn.classList.add('active');
+            enBtn.classList.remove('active');
+            
+            enElements.forEach(el => el.style.display = 'none');
+            idElements.forEach(el => el.style.display = 'block');
+        });
+
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.service-card, .about-content, .contact-container');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if(elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
         };
 
-        const diamondPrices = {
-            "5": 826,
-            "10": 1000,
-            "12": 1500,
-            "50": 6000,
-            "70": 9000,
-            "100": 13000,
-            "140": 18000,
-            "210": 27000,
-            "355": 45000,
-            "510": 65000,
-            "720": 90000,
-            "1450": 182000,
-            "booyah pass": 46000
-        };
+        // Set initial state for animation
+        document.querySelectorAll('.service-card, .about-content, .contact-container').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transition = 'all 0.5s ease';
+            el.style.transform = 'translateY(20px)';
+        });
 
-        // Set package from diamond cards
-        function setPackage(amount) {
-            document.getElementById('diamondAmount').value = amount;
-            document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Form submission
-        document.getElementById('topupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const userID = document.getElementById('userID').value;
-            const diamondAmount = document.getElementById('diamondAmount').value;
-            
-            if (!diamondMapping[diamondAmount]) {
-                alert(`Please select a valid diamond package`);
-                return;
-            }
-            
-            if (!userID) {
-                alert(`Please enter your Free Fire Player ID`);
-                return;
-            }
-            
-            // Show loading state
-            const submitBtn = document.querySelector('#topupForm button[type="submit"]');
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-            
-            // Simulate API call
-            setTimeout(() => {
-                // Generate random order ID
-                const orderID = 'FT-' + Math.floor(Math.random() * 1000000);
-                
-                // Calculate prices
-                const price = diamondPrices[diamondAmount];
-                const totalPrice = price + 1000;
-                
-                // Update result display
-                document.getElementById('resultID').textContent = userID;
-                document.getElementById('resultPackage').textContent = isNaN(diamondAmount) ? 
-                    diamondAmount : `${diamondAmount} Diamonds`;
-                document.getElementById('resultProductCode').textContent = diamondMapping[diamondAmount];
-                document.getElementById('resultOrderID').textContent = orderID;
-                document.getElementById('resultPrice').textContent = `Rp ${price.toLocaleString('id-ID')}`;
-                document.getElementById('resultTotal').textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
-                
-                // Generate QR code with payment data for DANA/QRIS
-                const paymentData = `https://firetop.com/pay?order=${orderID}&amount=${totalPrice}`;
-                document.getElementById('qrcodeImage').src = 
-                    `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(paymentData)}`;
-                
-                // Show result section
-                document.getElementById('resultSection').style.display = 'block';
-                
-                // Reset form button
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Create Order';
-                
-                // Scroll to result
-                document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
-            }, 1500);
-        });
-        
-        // Payment method selection
-        document.querySelectorAll('.payment-method').forEach(method => {
-            method.addEventListener('click', function() {
-                document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
-                this.classList.add('active');
-                
-                // In a real implementation, you would update the QR code based on payment method
-                // For demo, we're just showing the same QR code for all methods
-            });
-        });
-        
-        // FAQ accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', function() {
-                const item = this.parentElement;
-                item.classList.toggle('active');
-            });
-        });
-        
-        // Initialize particles.js
-        particlesJS('particles-js', {
-            particles: {
-                number: {
-                    value: 80,
-                    density: {
-                        enable: true,
-                        value_area: 800
-                    }
-                },
-                color: {
-                    value: "#6c5ce7"
-                },
-                shape: {
-                    type: "circle",
-                    stroke: {
-                        width: 0,
-                        color: "#000000"
-                    },
-                    polygon: {
-                        nb_sides: 5
-                    }
-                },
-                opacity: {
-                    value: 0.5,
-                    random: false,
-                    anim: {
-                        enable: false,
-                        speed: 1,
-                        opacity_min: 0.1,
-                        sync: false
-                    }
-                },
-                size: {
-                    value: 3,
-                    random: true,
-                    anim: {
-                        enable: false,
-                        speed: 40,
-                        size_min: 0.1,
-                        sync: false
-                    }
-                },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: "#6c5ce7",
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: "none",
-                    random: false,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false,
-                    attract: {
-                        enable: false,
-                        rotateX: 600,
-                        rotateY: 1200
-                    }
-                }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: {
-                        enable: true,
-                        mode: "grab"
-                    },
-                    onclick: {
-                        enable: true,
-                        mode: "push"
-                    },
-                    resize: true
-                },
-                modes: {
-                    grab: {
-                        distance: 140,
-                        line_linked: {
-                            opacity: 1
-                        }
-                    },
-                    bubble: {
-                        distance: 400,
-                        size: 40,
-                        duration: 2,
-                        opacity: 8,
-                        speed: 3
-                    },
-                    repulse: {
-                        distance: 200,
-                        duration: 0.4
-                    },
-                    push: {
-                        particles_nb: 4
-                    },
-                    remove: {
-                        particles_nb: 2
-                    }
-                }
-            },
-            retina_detect: true
-        });
-        
-        // Testimonial slider (simplified for demo)
-        let currentTestimonial = 0;
-        const testimonials = document.querySelectorAll('.testimonial-slide');
-        
-        function showTestimonial(index) {
-            testimonials.forEach((testimonial, i) => {
-                testimonial.style.display = i === index ? 'block' : 'none';
-            });
-        }
-        
-        function nextTestimonial() {
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-            showTestimonial(currentTestimonial);
-        }
-        
-        // Initialize and auto-rotate testimonials
-        showTestimonial(0);
-        setInterval(nextTestimonial, 5000);
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
     </script>
 </body>
 </html>
