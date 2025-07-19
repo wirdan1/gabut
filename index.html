@@ -3,24 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fire Diamond - Topup Free Fire Diamonds</title>
+    <title>FireTop - Premium Free Fire Diamond Topup</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="icon" href="https://qu.ax/BagrV.jpg" type="image/jpg">
     <style>
         :root {
-            --primary: #6C5CE7; /* Purple */
-            --secondary: #00B894; /* Green */
-            --accent: #FD79A8; /* Pink */
-            --dark: #2D3436; /* Dark gray */
-            --light: #F5F6FA; /* Light gray */
-            --yellow: #FDCB6E; 
+            --primary: #6C5CE7;
+            --primary-dark: #5649c0;
+            --secondary: #00B894;
+            --accent: #FD79A8;
+            --dark: #1a1a2e;
+            --darker: #16213E;
+            --light: #F5F6FA;
+            --yellow: #FDCB6E;
             --blue: #0984E3;
             --red: #D63031;
-            --text: #2D3436;
-            --card-bg: #FFFFFF;
-            --shadow: 0 10px 20px rgba(0,0,0,0.1);
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --text: #E6E6E6;
+            --text-dark: #2D3436;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --card-bg-solid: #1F1F38;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            --gradient-reverse: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
         }
         
         * {
@@ -31,15 +38,76 @@
         }
         
         body {
-            background: linear-gradient(135deg, var(--light) 0%, #DFE6E9 100%);
+            background: var(--darker);
             color: var(--text);
-            line-height: 1.6;
+            line-height: 1.7;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .preloader.fade-out {
+            opacity: 0;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--primary);
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Particles */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
         }
         
         /* Header */
         header {
-            background: rgba(255,255,255,0.9);
+            background: rgba(26, 26, 46, 0.9);
             backdrop-filter: blur(10px);
             box-shadow: var(--shadow);
             position: fixed;
@@ -49,6 +117,11 @@
             z-index: 1000;
             padding: 15px 0;
             transition: var(--transition);
+        }
+        
+        .header-scrolled {
+            padding: 10px 0;
+            background: rgba(22, 33, 62, 0.98);
         }
         
         .header-content {
@@ -65,7 +138,7 @@
             align-items: center;
             font-size: 24px;
             font-weight: 700;
-            color: var(--primary);
+            color: white;
             text-decoration: none;
         }
         
@@ -74,37 +147,54 @@
             margin-right: 10px;
         }
         
-        nav a {
+        .logo span {
             color: var(--primary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: var(--text);
             text-decoration: none;
             font-weight: 600;
             padding: 8px 15px;
             border-radius: 50px;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
         }
         
-        nav a:hover {
-            background-color: var(--primary);
+        nav ul li a i {
+            margin-right: 8px;
+        }
+        
+        nav ul li a:hover {
+            background: var(--primary);
             color: white;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
         }
         
         /* Hero Section */
         .hero {
             padding: 180px 0 100px;
             text-align: center;
-            background: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
             position: relative;
-            color: white;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(108, 92, 231, 0.8) 0%, rgba(253, 121, 168, 0.8) 100%);
+            overflow: hidden;
         }
         
         .hero-content {
@@ -116,9 +206,13 @@
         }
         
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 20px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
         }
         
         .hero p {
@@ -127,10 +221,19 @@
             opacity: 0.9;
         }
         
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
         /* Button Styles */
         .btn {
-            display: inline-block;
-            background-color: var(--secondary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient);
             color: white;
             padding: 12px 30px;
             border-radius: 50px;
@@ -140,51 +243,79 @@
             border: none;
             cursor: pointer;
             font-size: 16px;
-            box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-reverse);
+            transition: var(--transition);
+            z-index: -1;
         }
         
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 184, 148, 0.4);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.6);
+        }
+        
+        .btn:hover::before {
+            left: 0;
+        }
+        
+        .btn i {
+            margin-right: 8px;
         }
         
         .btn-outline {
-            background-color: transparent;
-            border: 2px solid white;
-            color: white;
-            margin-left: 15px;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
             box-shadow: none;
         }
         
         .btn-outline:hover {
-            background-color: white;
-            color: var(--primary);
+            background: var(--primary);
+            color: white;
         }
         
         .btn-accent {
-            background-color: var(--accent);
-            box-shadow: 0 4px 15px rgba(253, 121, 168, 0.3);
+            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent) 0%, #e84393 100%);
+            box-shadow: 0 4px 15px rgba(253, 121, 168, 0.4);
         }
         
-        .btn-accent:hover {
-            box-shadow: 0 6px 20px rgba(253, 121, 168, 0.4);
+        .btn-accent::before {
+            background: linear-gradient(135deg, #e84393 0%, var(--accent) 100%);
+        }
+        
+        .btn-sm {
+            padding: 8px 20px;
+            font-size: 14px;
         }
         
         /* Main Content */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 80px 20px;
+            position: relative;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
         
         .section-title h2 {
             font-size: 2.5rem;
-            color: var(--primary);
+            color: white;
             margin-bottom: 15px;
             position: relative;
             display: inline-block;
@@ -198,29 +329,38 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: var(--secondary);
+            background: var(--gradient);
             border-radius: 2px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.8;
         }
         
         /* Card Styles */
         .card {
-            background-color: var(--card-bg);
+            background: var(--card-bg);
             border-radius: 15px;
             padding: 30px;
             box-shadow: var(--shadow);
             margin-bottom: 30px;
             transition: var(--transition);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary);
         }
         
         .card-title {
             font-size: 1.5rem;
             margin-bottom: 20px;
-            color: var(--primary);
+            color: white;
             display: flex;
             align-items: center;
         }
@@ -228,172 +368,528 @@
         .card-title i {
             margin-right: 10px;
             font-size: 1.8rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         /* Form Styles */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 500;
-            color: var(--dark);
+            color: white;
         }
         
         .form-control {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
+            padding: 15px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
             font-size: 16px;
             transition: var(--transition);
-            background-color: var(--light);
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
         }
         
         .form-control:focus {
             border-color: var(--primary);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 20px;
         }
         
         /* Diamond Packages */
         .diamond-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
         
         .diamond-card {
-            background-color: var(--card-bg);
+            background: var(--card-bg-solid);
             border-radius: 12px;
-            padding: 20px;
+            padding: 25px;
             box-shadow: var(--shadow);
             transition: var(--transition);
             text-align: center;
             border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diamond-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(108, 92, 231, 0.1) 0%, rgba(108, 92, 231, 0) 70%);
+            transition: var(--transition);
+        }
+        
+        .diamond-card:hover::before {
+            transform: rotate(180deg);
         }
         
         .diamond-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             border-color: var(--primary);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
         
         .diamond-icon {
             font-size: 2.5rem;
-            color: var(--primary);
             margin-bottom: 15px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         .diamond-amount {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 10px;
-            color: var(--dark);
+            color: white;
         }
         
         .diamond-price {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 600;
+            margin-bottom: 20px;
             color: var(--secondary);
+        }
+        
+        .diamond-bonus {
+            font-size: 0.9rem;
+            color: var(--yellow);
             margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        /* Popular Tag */
+        .popular-tag {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: var(--gradient);
+            color: white;
+            padding: 5px 30px;
+            font-size: 12px;
+            font-weight: 600;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
         
         /* Result Section */
         .result-section {
             display: none;
             text-align: center;
-            padding: 30px;
-            background-color: var(--card-bg);
+            padding: 40px;
+            background: var(--card-bg-solid);
             border-radius: 15px;
             box-shadow: var(--shadow);
             margin-top: 30px;
             animation: fadeIn 0.5s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .payment-method {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        
+        .payment-method:hover {
+            background: rgba(108, 92, 231, 0.2);
+            border-color: var(--primary);
+        }
+        
+        .payment-method.active {
+            background: rgba(108, 92, 231, 0.3);
+            border-color: var(--primary);
+        }
+        
+        .payment-method img {
+            height: 20px;
         }
         
         .qrcode-container {
-            margin: 20px auto;
+            margin: 30px auto;
             padding: 20px;
-            background-color: white;
+            background: white;
             border-radius: 10px;
             display: inline-block;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .qrcode-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
         }
         
         .qrcode-container img {
             max-width: 250px;
             height: auto;
+            display: block;
+        }
+        
+        .qrcode-instruction {
+            margin-top: 15px;
+            font-size: 14px;
+            color: var(--text-dark);
         }
         
         .order-summary {
             text-align: left;
-            margin-top: 30px;
+            margin-top: 40px;
             padding-top: 20px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .order-summary h4 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        
+        .order-summary h4 i {
+            margin-right: 10px;
+            color: var(--primary);
         }
         
         .order-summary-item {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 1px dashed #eee;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
         }
         
         .order-summary-item.total {
             font-weight: 700;
             font-size: 1.1rem;
-            color: var(--primary);
-            margin-top: 15px;
+            margin-top: 20px;
             padding-top: 15px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             border-bottom: none;
+        }
+        
+        .order-summary-item .label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .order-summary-item .value {
+            font-weight: 600;
+        }
+        
+        .order-summary-item.total .value {
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .status-pending {
+            background: rgba(253, 203, 110, 0.2);
+            color: var(--yellow);
+        }
+        
+        .status-success {
+            background: rgba(0, 184, 148, 0.2);
+            color: var(--secondary);
         }
         
         /* Steps */
         .steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 30px;
-            margin-top: 30px;
+            margin-top: 40px;
         }
         
         .step {
             text-align: center;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: var(--card-bg);
+            padding: 30px 20px;
+            border-radius: 15px;
+            background: var(--card-bg-solid);
             box-shadow: var(--shadow);
             transition: var(--transition);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
         }
         
         .step:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 20px;
         }
         
         .step-icon {
             font-size: 2.5rem;
             margin-bottom: 15px;
-            color: var(--primary);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         .step h3 {
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature {
+            background: var(--card-bg-solid);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            flex-shrink: 0;
+        }
+        
+        .feature-content h3 {
             margin-bottom: 10px;
-            color: var(--dark);
+            color: white;
+        }
+        
+        .feature-content p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            margin-top: 40px;
+        }
+        
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonial-slide {
+            background: var(--card-bg-solid);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin: 0 15px;
+            transition: var(--transition);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 3px solid var(--primary);
+        }
+        
+        .testimonial-user h4 {
+            color: white;
+            margin-bottom: 5px;
+        }
+        
+        .testimonial-rating {
+            color: var(--yellow);
+            font-size: 14px;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            opacity: 0.9;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .testimonial-text::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 40px;
+            color: var(--primary);
+            opacity: 0.3;
+            font-family: serif;
+        }
+        
+        /* FAQ */
+        .faq-container {
+            margin-top: 40px;
+        }
+        
+        .faq-item {
+            background: var(--card-bg-solid);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .faq-question i {
+            transition: var(--transition);
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+            opacity: 0.9;
+            border-top: 1px solid transparent;
+        }
+        
+        .faq-item.active .faq-question {
+            background: rgba(108, 92, 231, 0.1);
+        }
+        
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         /* Footer */
         footer {
-            background-color: var(--dark);
+            background: var(--dark);
             color: white;
-            padding: 70px 0 30px;
+            padding: 80px 0 30px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
         }
         
         .footer-content {
@@ -421,7 +917,7 @@
             bottom: 0;
             width: 50px;
             height: 3px;
-            background-color: var(--secondary);
+            background: var(--gradient);
         }
         
         .footer-column p {
@@ -434,7 +930,7 @@
         }
         
         .footer-column ul li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
         .footer-column ul li a {
@@ -442,12 +938,20 @@
             text-decoration: none;
             opacity: 0.8;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
         }
         
         .footer-column ul li a:hover {
             opacity: 1;
-            color: var(--secondary);
+            color: var(--primary);
             padding-left: 5px;
+        }
+        
+        .footer-column ul li a i {
+            margin-right: 8px;
+            width: 20px;
+            text-align: center;
         }
         
         .social-links {
@@ -462,48 +966,115 @@
             justify-content: center;
             width: 40px;
             height: 40px;
-            background-color: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: white;
             transition: var(--transition);
         }
         
         .social-links a:hover {
-            background-color: var(--secondary);
+            background: var(--gradient);
             transform: translateY(-3px);
+        }
+        
+        .payment-brands {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .payment-brands img {
+            height: 25px;
+            border-radius: 4px;
         }
         
         .copyright {
             text-align: center;
             padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             opacity: 0.7;
             font-size: 0.9rem;
+        }
+        
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.5);
         }
         
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
             
             .hero p {
                 font-size: 1.1rem;
             }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
         }
         
         @media (max-width: 768px) {
-            .header-content {
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: var(--dark);
                 flex-direction: column;
-                text-align: center;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                transition: var(--transition);
+                z-index: 999;
             }
             
-            .logo {
-                margin-bottom: 15px;
+            nav ul.active {
+                left: 0;
             }
             
-            nav {
-                margin-top: 15px;
+            nav ul li {
+                margin-left: 0;
+            }
+            
+            nav ul li a {
+                font-size: 1.2rem;
+                padding: 10px 30px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
             }
             
             .hero {
@@ -511,21 +1082,17 @@
             }
             
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
-            .hero p {
-                font-size: 1rem;
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
             }
             
             .btn {
-                display: block;
-                width: 80%;
-                margin: 0 auto 15px;
-            }
-            
-            .btn-outline {
-                margin-left: auto;
+                width: 100%;
+                max-width: 300px;
             }
             
             .section-title h2 {
@@ -533,6 +1100,10 @@
             }
             
             .steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .features {
                 grid-template-columns: 1fr;
             }
         }
@@ -543,7 +1114,11 @@
             }
             
             .hero h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
             }
             
             .card {
@@ -555,6 +1130,18 @@
             }
             
             .diamond-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .result-section {
+                padding: 20px;
+            }
+            
+            .qrcode-container img {
+                max-width: 200px;
+            }
+            
+            .footer-content {
                 grid-template-columns: 1fr;
             }
         }
@@ -579,35 +1166,71 @@
         .pulse {
             animation: pulse 2s infinite;
         }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(-45deg, #6C5CE7, #FD79A8, #00B894, #0984E3);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
     </style>
 </head>
 <body>
-    <header>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+    
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Header -->
+    <header id="header">
         <div class="header-content">
             <a href="#" class="logo">
                 <img src="https://qu.ax/rAuCS.jpg" alt="Free Fire Logo">
-                Fire Diamond
+                Fire<span>Top</span>
             </a>
+            
             <nav>
-                <a href="#order">Order</a>
-                <a href="#packages">Packages</a>
-                <a href="#how-it-works">How It Works</a>
-                <a href="#contact">Contact</a>
+                <ul id="nav-menu">
+                    <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#order"><i class="fas fa-shopping-cart"></i> Order</a></li>
+                    <li><a href="#packages"><i class="fas fa-gem"></i> Packages</a></li>
+                    <li><a href="#features"><i class="fas fa-star"></i> Features</a></li>
+                    <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                </ul>
+                
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </nav>
         </div>
     </header>
     
-    <section class="hero">
+    <!-- Hero Section -->
+    <section class="hero" id="home">
         <div class="hero-content">
-            <h1>Topup Free Fire Diamonds</h1>
-            <p>Get your diamonds instantly with our fast and secure service. Best prices guaranteed!</p>
-            <div>
-                <a href="#order" class="btn">Order Now</a>
-                <a href="#packages" class="btn btn-outline">View Packages</a>
+            <h1 class="animate__animated animate__fadeInDown">Premium Free Fire Diamond Topup</h1>
+            <p class="animate__animated animate__fadeInDown animate__delay-1s">Get your diamonds instantly with our fast and secure service. Best prices guaranteed!</p>
+            
+            <div class="hero-btns animate__animated animate__fadeInUp animate__delay-2s">
+                <a href="#order" class="btn">
+                    <i class="fas fa-bolt"></i> Order Now
+                </a>
+                <a href="#packages" class="btn btn-outline">
+                    <i class="fas fa-gem"></i> View Packages
+                </a>
             </div>
         </div>
     </section>
     
+    <!-- Order Section -->
     <section class="container" id="order">
         <div class="section-title">
             <h2>Order Diamonds</h2>
@@ -617,12 +1240,12 @@
         <div class="card">
             <form id="topupForm">
                 <div class="form-group">
-                    <label for="userID">Free Fire Player ID</label>
+                    <label for="userID"><i class="fas fa-user"></i> Free Fire Player ID</label>
                     <input type="text" id="userID" class="form-control" placeholder="Enter your Free Fire ID" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="diamondAmount">Select Diamond Package</label>
+                    <label for="diamondAmount"><i class="fas fa-gem"></i> Select Diamond Package</label>
                     <select id="diamondAmount" class="form-control" required>
                         <option value="">-- Select Package --</option>
                         <option value="5">5 Diamonds (Rp 826)</option>
@@ -648,45 +1271,65 @@
             
             <div id="resultSection" class="result-section">
                 <h3>Complete Your Payment</h3>
-                <p>Scan the QR code below to complete your order</p>
+                <p>Choose your payment method and complete the transaction</p>
+                
+                <div class="payment-methods">
+                    <div class="payment-method active" data-method="qris">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/QRIS_logo.svg/1200px-QRIS_logo.svg.png" alt="QRIS">
+                        <span>QRIS</span>
+                    </div>
+                    <div class="payment-method" data-method="dana">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_DANA.svg" alt="DANA">
+                        <span>DANA</span>
+                    </div>
+                    <div class="payment-method" data-method="ovo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Logo_ovo.png" alt="OVO">
+                        <span>OVO</span>
+                    </div>
+                </div>
                 
                 <div class="qrcode-container floating">
                     <img id="qrcodeImage" src="" alt="Payment QR Code">
+                    <div class="qrcode-instruction">Scan this QR code with your mobile banking/DANA/OVO app</div>
                 </div>
                 
                 <div class="order-summary">
-                    <h4>Order Details</h4>
+                    <h4><i class="fas fa-receipt"></i> Order Details</h4>
                     <div class="order-summary-item">
-                        <span>Player ID:</span>
-                        <span id="resultID"></span>
+                        <span class="label">Player ID:</span>
+                        <span class="value" id="resultID"></span>
                     </div>
                     <div class="order-summary-item">
-                        <span>Package:</span>
-                        <span id="resultPackage"></span>
+                        <span class="label">Package:</span>
+                        <span class="value" id="resultPackage"></span>
                     </div>
                     <div class="order-summary-item">
-                        <span>Product Code:</span>
-                        <span id="resultProductCode"></span>
+                        <span class="label">Product Code:</span>
+                        <span class="value" id="resultProductCode"></span>
                     </div>
                     <div class="order-summary-item">
-                        <span>Order ID:</span>
-                        <span id="resultOrderID"></span>
+                        <span class="label">Order ID:</span>
+                        <span class="value" id="resultOrderID"></span>
                     </div>
                     <div class="order-summary-item">
-                        <span>Status:</span>
-                        <span style="color: var(--secondary); font-weight: 600;">Pending Payment</span>
+                        <span class="label">Status:</span>
+                        <span class="value">
+                            <span class="status-badge status-pending">
+                                <i class="fas fa-clock"></i> Pending Payment
+                            </span>
+                        </span>
                     </div>
                     <div class="order-summary-item">
-                        <span>Diamond Price:</span>
-                        <span id="resultPrice"></span>
+                        <span class="label">Diamond Price:</span>
+                        <span class="value" id="resultPrice"></span>
                     </div>
                     <div class="order-summary-item">
-                        <span>Admin Fee:</span>
-                        <span>Rp 1,000</span>
+                        <span class="label">Admin Fee:</span>
+                        <span class="value">Rp 1,000</span>
                     </div>
                     <div class="order-summary-item total">
-                        <span>Total Payment:</span>
-                        <span id="resultTotal"></span>
+                        <span class="label">Total Payment:</span>
+                        <span class="value" id="resultTotal"></span>
                     </div>
                 </div>
                 
@@ -701,6 +1344,7 @@
         </div>
     </section>
     
+    <!-- Diamond Packages -->
     <section class="container" id="packages">
         <div class="section-title">
             <h2>Diamond Packages</h2>
@@ -714,7 +1358,7 @@
                 </div>
                 <div class="diamond-amount">5 Diamonds</div>
                 <div class="diamond-price">Rp 826</div>
-                <button class="btn" onclick="setPackage('5')">Select</button>
+                <button class="btn btn-sm" onclick="setPackage('5')">Select</button>
             </div>
             
             <div class="diamond-card">
@@ -723,7 +1367,7 @@
                 </div>
                 <div class="diamond-amount">10 Diamonds</div>
                 <div class="diamond-price">Rp 1,000</div>
-                <button class="btn" onclick="setPackage('10')">Select</button>
+                <button class="btn btn-sm" onclick="setPackage('10')">Select</button>
             </div>
             
             <div class="diamond-card">
@@ -732,7 +1376,7 @@
                 </div>
                 <div class="diamond-amount">12 Diamonds</div>
                 <div class="diamond-price">Rp 1,500</div>
-                <button class="btn" onclick="setPackage('12')">Select</button>
+                <button class="btn btn-sm" onclick="setPackage('12')">Select</button>
             </div>
             
             <div class="diamond-card">
@@ -741,7 +1385,7 @@
                 </div>
                 <div class="diamond-amount">50 Diamonds</div>
                 <div class="diamond-price">Rp 6,000</div>
-                <button class="btn" onclick="setPackage('50')">Select</button>
+                <button class="btn btn-sm" onclick="setPackage('50')">Select</button>
             </div>
             
             <div class="diamond-card">
@@ -750,7 +1394,8 @@
                 </div>
                 <div class="diamond-amount">70 Diamonds</div>
                 <div class="diamond-price">Rp 9,000</div>
-                <button class="btn" onclick="setPackage('70')">Select</button>
+                <div class="diamond-bonus">+ 5 Bonus Diamonds</div>
+                <button class="btn btn-sm" onclick="setPackage('70')">Select</button>
             </div>
             
             <div class="diamond-card">
@@ -759,7 +1404,8 @@
                 </div>
                 <div class="diamond-amount">100 Diamonds</div>
                 <div class="diamond-price">Rp 13,000</div>
-                <button class="btn" onclick="setPackage('100')">Select</button>
+                <div class="diamond-bonus">+ 10 Bonus Diamonds</div>
+                <button class="btn btn-sm" onclick="setPackage('100')">Select</button>
             </div>
             
             <div class="diamond-card">
@@ -768,7 +1414,8 @@
                 </div>
                 <div class="diamond-amount">140 Diamonds</div>
                 <div class="diamond-price">Rp 18,000</div>
-                <button class="btn" onclick="setPackage('140')">Select</button>
+                <div class="diamond-bonus">+ 15 Bonus Diamonds</div>
+                <button class="btn btn-sm" onclick="setPackage('140')">Select</button>
             </div>
             
             <div class="diamond-card">
@@ -777,7 +1424,8 @@
                 </div>
                 <div class="diamond-amount">210 Diamonds</div>
                 <div class="diamond-price">Rp 27,000</div>
-                <button class="btn" onclick="setPackage('210')">Select</button>
+                <div class="diamond-bonus">+ 25 Bonus Diamonds</div>
+                <button class="btn btn-sm" onclick="setPackage('210')">Select</button>
             </div>
             
             <div class="diamond-card">
@@ -786,7 +1434,8 @@
                 </div>
                 <div class="diamond-amount">355 Diamonds</div>
                 <div class="diamond-price">Rp 45,000</div>
-                <button class="btn" onclick="setPackage('355')">Select</button>
+                <div class="diamond-bonus">+ 40 Bonus Diamonds</div>
+                <button class="btn btn-sm" onclick="setPackage('355')">Select</button>
             </div>
             
             <div class="diamond-card">
@@ -795,7 +1444,8 @@
                 </div>
                 <div class="diamond-amount">510 Diamonds</div>
                 <div class="diamond-price">Rp 65,000</div>
-                <button class="btn" onclick="setPackage('510')">Select</button>
+                <div class="diamond-bonus">+ 60 Bonus Diamonds</div>
+                <button class="btn btn-sm" onclick="setPackage('510')">Select</button>
             </div>
             
             <div class="diamond-card">
@@ -804,28 +1454,103 @@
                 </div>
                 <div class="diamond-amount">720 Diamonds</div>
                 <div class="diamond-price">Rp 90,000</div>
-                <button class="btn" onclick="setPackage('720')">Select</button>
+                <div class="diamond-bonus">+ 80 Bonus Diamonds</div>
+                <button class="btn btn-sm" onclick="setPackage('720')">Select</button>
             </div>
             
             <div class="diamond-card">
+                <div class="popular-tag">POPULAR</div>
                 <div class="diamond-icon">
                     <i class="fas fa-ticket-alt"></i>
                 </div>
                 <div class="diamond-amount">Booyah Pass</div>
                 <div class="diamond-price">Rp 46,000</div>
-                <button class="btn" onclick="setPackage('booyah pass')">Select</button>
+                <div class="diamond-bonus">+ Exclusive Rewards</div>
+                <button class="btn btn-sm" onclick="setPackage('booyah pass')">Select</button>
             </div>
         </div>
     </section>
     
+    <!-- Features Section -->
+    <section class="container" id="features">
+        <div class="section-title">
+            <h2>Why Choose Us?</h2>
+            <p>We provide the best service for Free Fire players</p>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Instant Delivery</h3>
+                    <p>Get your diamonds within 1-5 minutes after payment confirmation. No waiting time!</p>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>100% Safe</h3>
+                    <p>Secure payment methods and guaranteed account safety. We never ask for your password.</p>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-percentage"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Best Prices</h3>
+                    <p>We offer the most competitive prices in the market with special bonuses for large packages.</p>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>24/7 Support</h3>
+                    <p>Our customer service team is available anytime to help you with your orders.</p>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Bonus Diamonds</h3>
+                    <p>Get extra bonus diamonds when you purchase larger packages. More value for your money!</p>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Multiple Payments</h3>
+                    <p>Various payment methods available including QRIS, DANA, OVO, and bank transfer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works -->
     <section class="container" id="how-it-works">
         <div class="section-title">
             <h2>How It Works</h2>
-            <p>Get your diamonds in just 3 easy steps</p>
+            <p>Get your diamonds in just 4 easy steps</p>
         </div>
         
         <div class="steps">
             <div class="step">
+                <div class="step-number">1</div>
                 <div class="step-icon">
                     <i class="fas fa-user"></i>
                 </div>
@@ -834,6 +1559,7 @@
             </div>
             
             <div class="step">
+                <div class="step-number">2</div>
                 <div class="step-icon">
                     <i class="fas fa-shopping-cart"></i>
                 </div>
@@ -842,6 +1568,7 @@
             </div>
             
             <div class="step">
+                <div class="step-number">3</div>
                 <div class="step-icon">
                     <i class="fas fa-qrcode"></i>
                 </div>
@@ -850,6 +1577,7 @@
             </div>
             
             <div class="step">
+                <div class="step-number">4</div>
                 <div class="step-icon">
                     <i class="fas fa-gem"></i>
                 </div>
@@ -859,52 +1587,263 @@
         </div>
     </section>
     
+    <!-- Testimonials -->
+    <section class="container" id="testimonials">
+        <div class="section-title">
+            <h2>What Players Say</h2>
+            <p>Trusted by thousands of Free Fire players</p>
+        </div>
+        
+        <div class="testimonials">
+            <div class="testimonial-slider">
+                <div class="testimonial-slide">
+                    <div class="testimonial-header">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="testimonial-avatar">
+                        <div class="testimonial-user">
+                            <h4>Rizky Pratama</h4>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">
+                        Very fast delivery! I got my diamonds in less than 2 minutes after payment. Will definitely order again.
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-header">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" class="testimonial-avatar">
+                        <div class="testimonial-user">
+                            <h4>Sarah Wijaya</h4>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">
+                        The prices here are much cheaper than other places. Got bonus diamonds too! Customer service is very responsive.
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-header">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="User" class="testimonial-avatar">
+                        <div class="testimonial-user">
+                            <h4>Andika Surya</h4>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-text">
+                        I was skeptical at first but decided to try with small amount. It worked perfectly! Now I always buy diamonds here.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="container" id="faq">
+        <div class="section-title">
+            <h2>Frequently Asked Questions</h2>
+            <p>Find answers to common questions about our service</p>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How long does it take to receive diamonds after payment?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Diamonds are usually delivered within 1-5 minutes after payment confirmation. In rare cases during peak hours, it may take up to 15 minutes. If you haven't received your diamonds after 30 minutes, please contact our customer service.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is it safe to top up diamonds through your service?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Absolutely! We only require your Free Fire Player ID to process the order. We never ask for your password or other account credentials. All transactions are secured with encryption and we use official payment channels.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What payment methods do you accept?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    We currently accept QRIS, DANA, OVO, and bank transfers (coming soon). All payments are processed securely through our payment partners.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I get a refund if I made a wrong order?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Refunds are only possible if the diamonds haven't been delivered to your account yet. Please contact our customer service immediately if you made a wrong order. Once diamonds are delivered, we cannot process refunds.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you offer discounts for bulk purchases?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes! Our larger packages already include bonus diamonds which effectively gives you more value for your money. We also occasionally run special promotions with additional discounts - follow our social media to stay updated.
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-column">
-                <h3>Fire Diamond</h3>
+                <h3>FireTop</h3>
                 <p>The fastest and most reliable Free Fire diamond topup service with instant delivery.</p>
                 <div class="social-links">
                     <a href="https://wa.me/62895323195263"><i class="fab fa-whatsapp"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
                 </div>
             </div>
             
             <div class="footer-column">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#order">Order Diamonds</a></li>
-                    <li><a href="#packages">Diamond Packages</a></li>
-                    <li><a href="#how-it-works">How It Works</a></li>
-                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#order"><i class="fas fa-shopping-cart"></i> Order Diamonds</a></li>
+                    <li><a href="#packages"><i class="fas fa-gem"></i> Diamond Packages</a></li>
+                    <li><a href="#how-it-works"><i class="fas fa-question-circle"></i> How It Works</a></li>
+                    <li><a href="#faq"><i class="fas fa-info-circle"></i> FAQ</a></li>
                 </ul>
             </div>
             
             <div class="footer-column">
                 <h3>Payment Methods</h3>
-                <ul>
-                    <li><a href="#">QRIS</a></li>
-                    <li><a href="#">DANA ( comingsoon )</a></li>
-                    <li><a href="#">OVO ( comingsoon )</a></li>
-                    <li><a href="#">Bank Transfer ( comingsoon )</a></li>
-                </ul>
+                <div class="payment-brands">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/QRIS_logo.svg/1200px-QRIS_logo.svg.png" alt="QRIS">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_DANA.svg" alt="DANA">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Logo_ovo.png" alt="OVO">
+                </div>
+                <p style="margin-top: 15px;">More payment methods coming soon!</p>
             </div>
             
             <div class="footer-column">
                 <h3>Contact Us</h3>
-                <p><i class="fas fa-envelope"></i> devhookrest@gmail.com</p>
-                <p><i class="fab fa-whatsapp"></i> +62 895-3231-95263</p>
-                <p><i class="fas fa-user"></i> Creator: Danz</p>
+                <ul>
+                    <li><a href="mailto:devhookrest@gmail.com"><i class="fas fa-envelope"></i> devhookrest@gmail.com</a></li>
+                    <li><a href="https://wa.me/62895323195263"><i class="fab fa-whatsapp"></i> +62 895-3231-95263</a></li>
+                    <li><a href="#"><i class="fas fa-user"></i> Creator: Danz</a></li>
+                    <li><a href="#"><i class="fas fa-clock"></i> 24/7 Customer Support</a></li>
+                </ul>
             </div>
         </div>
         
         <div class="copyright">
-            <p>&copy; 2025 Fire Diamond. All rights reserved.</p>
+            <p>&copy; 2025 FireTop. All rights reserved.</p>
         </div>
     </footer>
     
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.querySelector('.preloader');
+            setTimeout(() => {
+                preloader.classList.add('fade-out');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            }, 1000);
+        });
+        
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            this.innerHTML = navMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+            
+            // Back to top button
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+        
+        // Back to top button
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
         // Diamond mapping and prices
         const diamondMapping = {
             "5": "FF5-S24",
@@ -969,7 +1908,7 @@
             // Simulate API call
             setTimeout(() => {
                 // Generate random order ID
-                const orderID = 'FD-' + Math.floor(Math.random() * 1000000);
+                const orderID = 'FT-' + Math.floor(Math.random() * 1000000);
                 
                 // Calculate prices
                 const price = diamondPrices[diamondAmount];
@@ -984,9 +1923,10 @@
                 document.getElementById('resultPrice').textContent = `Rp ${price.toLocaleString('id-ID')}`;
                 document.getElementById('resultTotal').textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
                 
-                // Generate QR code
+                // Generate QR code with payment data for DANA/QRIS
+                const paymentData = `https://firetop.com/pay?order=${orderID}&amount=${totalPrice}`;
                 document.getElementById('qrcodeImage').src = 
-                    `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=FD-${orderID}`;
+                    `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(paymentData)}`;
                 
                 // Show result section
                 document.getElementById('resultSection').style.display = 'block';
@@ -999,16 +1939,151 @@
                 document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
             }, 1500);
         });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        
+        // Payment method selection
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('active'));
+                this.classList.add('active');
+                
+                // In a real implementation, you would update the QR code based on payment method
+                // For demo, we're just showing the same QR code for all methods
             });
         });
+        
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const item = this.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Initialize particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: "#6c5ce7"
+                },
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#000000"
+                    },
+                    polygon: {
+                        nb_sides: 5
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: false,
+                    anim: {
+                        enable: false,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: false,
+                        speed: 40,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#6c5ce7",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "grab"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    bubble: {
+                        distance: 400,
+                        size: 40,
+                        duration: 2,
+                        opacity: 8,
+                        speed: 3
+                    },
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    },
+                    remove: {
+                        particles_nb: 2
+                    }
+                }
+            },
+            retina_detect: true
+        });
+        
+        // Testimonial slider (simplified for demo)
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial-slide');
+        
+        function showTestimonial(index) {
+            testimonials.forEach((testimonial, i) => {
+                testimonial.style.display = i === index ? 'block' : 'none';
+            });
+        }
+        
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }
+        
+        // Initialize and auto-rotate testimonials
+        showTestimonial(0);
+        setInterval(nextTestimonial, 5000);
     </script>
 </body>
 </html>
