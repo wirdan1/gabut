@@ -3,19 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flappy Bird - Modern Game</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Flappy Bird - Simple Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #87CEEB; /* Latar belakang biru muda */
+            overflow: hidden;
+        }
+
+        .game-container {
+            position: relative;
+            width: 320px;
+            height: 568px;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        .score {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            display: none;
+        }
+
+        .game-over h2 {
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .game-over button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background: #ff6b6b;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .game-over button:hover {
+            background: #ff8787;
+        }
+    </style>
 </head>
 <body>
     <div class="game-container">
-        <canvas id="gameCanvas" width="400" height="600"></canvas>
-        <div class="score">Score: <span id="score">0</span></div>
+        <canvas id="gameCanvas" width="320" height="568"></canvas>
+        <div class="score" id="score">Score: 0</div>
         <div class="game-over" id="gameOver">
             <h2>Game Over!</h2>
             <p>Score: <span id="finalScore">0</span></p>
             <button onclick="resetGame()">Restart</button>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreElement = document.getElementById('score');
+        const finalScoreElement = document.getElementById('finalScore');
+        const gameOverElement = document.getElementById('gameOver');
+
+        // Load images
+        const birdImg = new Image();
+        birdImg.src = 'bird.png';
+
+        const pipeImg = new Image();
+        pipeImg.src = 'pipe.png';
+
+        const backgroundImg = new Image();
+        backgroundImg.src = 'background.png';
+
+        let bird = {
+            x: 50,
+            y: canvas.height / 2,
+            width: 34, // Sesuaikan dengan lebar gambar burung
+            height: 24, // Sesuaikan dengan tinggi gambar burung
+            velocity: 0,
+            gravity: 0.5,
+            jump: -8
+        };
+
+        let pipes = [];
+        let score = 0;
+        let gameOver = false;
+        let frameCount = 0;
+
+        const pipeWidth = 52; // Sesuaikan dengan lebar gambar pipa
+        const pipeGap = 150;
+        const pipeSpeed = 2;
+
+        function drawBackground() {
+            ctx.drawImage(backgroundImg, 0, 0, canvas.width, canvas.height);
+        }
+
+        function drawBird() {
+            ctx.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
+        }
+
+        function drawPipes() {
+            pipes.forEach(pipe => {
+                // Pipa atas (flip vertikal)
+                ctx.save();
+                ctx.translate(pipe.x + pipeWidth / 2, pipe.top + 320 / 2); // 320 adalah tinggi pipa
+                ctx.rotate(Math.PI);
+                ctx.drawImage(pipeImg, -pipeWidth / 2, -320 / 2, pipeWidth, 320);
+                ctx.restore();
+
+                // Pipa bawah
+                ctx.drawImage(pipeImg, pipe.x, pipe.top + pipeGap, pipeWidth, canvas.height - pipe.top - pipeGap);
+            });
+        }
+
+        function updateBird() {
+            bird.velocity += bird.gravity;
+            bird.y += bird.velocity;
+
+            if (bird.y + bird.height > canvas.height || bird.y < 0) {
+                gameOver = true;
+            }
+        }
+
+        function updatePipes() {
+            if (frameCount % 90 === 0) {
+                const topHeight = Math.random() * (canvas.height - pipeGap - 100) + 50;
+                pipes.push({ x: canvas.width, top: topHeight });
+            }
+
+            pipes.forEach(pipe => {
+                pipe.x -= pipeSpeed;
+
+                // Collision detection
+                if (bird.x + bird.width > pipe.x && 
+                    bird.x < pipe.x + pipeWidth &&
+                    (bird.y < pipe.top + 320 || 
+                     bird.y + bird.height > pipe.top + pipeGap)) {
+                    gameOver = true;
+                }
+
+                // Score increment
+                if (bird.x > pipe.x + pipeWidth && !pipe.scored) {
+                    score++;
+                    pipe.scored = true;
+                    scoreElement.textContent = `Score: ${score}`;
+                }
+            });
+
+            pipes = pipes.filter(pipe => pipe.x + pipeWidth > 0);
+        }
+
+        function gameLoop() {
+            if (gameOver) {
+                finalScoreElement.textContent = score;
+                gameOverElement.style.display = 'block';
+                return;
+            }
+
+            drawBackground();
+            drawBird();
+            drawPipes();
+            updateBird();
+            updatePipes();
+            frameCount++;
+            requestAnimationFrame(gameLoop);
+        }
+
+        function resetGame() {
+            bird.y = canvas.height / 2;
+            bird.velocity = 0;
+            pipes = [];
+            score = 0;
+            frameCount = 0;
+            gameOver = false;
+            scoreElement.textContent = `Score: ${score}`;
+            gameOverElement.style.display = 'none';
+            gameLoop();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' && !gameOver) {
+                bird.velocity = bird.jump;
+            }
+        });
+
+        canvas.addEventListener('click', () => {
+            if (!gameOver) {
+                bird.velocity = bird.jump;
+            }
+        });
+
+        // Mulai game setelah gambar dimuat
+        backgroundImg.onload = () => {
+            birdImg.onload = () => {
+                pipeImg.onload = () => {
+                    gameLoop();
+                };
+            };
+        };
+    </script>
 </body>
 </html>
